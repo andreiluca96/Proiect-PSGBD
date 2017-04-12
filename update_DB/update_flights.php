@@ -23,6 +23,7 @@
             <li><a href="../index.php">Home</a></li>
             <li><a href="../currentFlights.php">Current Flights</a></li>
             <li class="active"><a href="insert_into_flights.php">Update Flights</a></li>
+            <li><a href="../show_airplanes/show_airplanes.php">See Airplanes</a></li>
           </ul>
         </div>
     </nav>

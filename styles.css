@@ -5,6 +5,7 @@ html {
 body {
 	display: flex;
 	flex-flow: column wrap;
+	align-items: center;
 	width: 100%;
 	height: 100%;
 	background: #666666;
@@ -24,6 +25,7 @@ h5 {
 }
 
 table {
+	border: 2px solid black;
 	background-color: white;
 }
 
@@ -79,8 +81,12 @@ table {
 	flex-flow: column wrap;
 	justify-content: space-around;
 	align-items: center;
-	height: 20%;
+	height: 30%;
 	width: 50%;
+}
+
+.navbar {
+	width: 100%;
 }
 
 @media screen and (max-width: 1200px) {
