@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Global Flight Management System</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../styles.css" rel="stylesheet">
+
+  </head>
+  <body>
+   <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="../index.html">
+              <img src="https://img.clipartfest.com/d130a2ef13e2f9aeab0ebbeddb356ffc_airplane-clip-art-at-clker-com-vector-plane-clipart_600-483.png" height="30px" width="30px" alt="icon">
+            </a>
+            <h5>
+              Global Flight Management System
+            <h5>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../currentFlights.html">Current Flights</a></li>
+            <li class="active"><a href="update_database.html">Update Flights</a></li>
+          </ul>
+        </div>
+    </nav>
+
+  <ul class="nav nav-tabs nav-justified">
+    <li><a class="crud-selection" href="insert_into_table.html">Insert</a></li>
+    <li><a class="crud-selection" href="show_table.html">Show</a></li>
+    <li class="active"><a class="crud-selection" href="update_table.html">Update</a></li>
+    <li><a class="crud-selection" href="delete_from_table.html">Delete</a></li>
+  </ul>
+
+    <form class="table-insert-data" for="airplane-id">
+    <label class="table-attribute-name">
+      Airplane ID
+    </label>
+    <input type="number" name="airplane-id" id="airplane-id">
+
+    <label class="table-attribute-name" for="airport-departure-id">
+      Airport departure ID:
+    </label>
+    <input type="number" name="airport-departure-id" id="airport-departure-id">
+
+    <label class="table-attribute-name" for="airport-departure-id">
+      Airplane arrival ID:
+    </label>
+    <input type="number" name="airport-arrival-id" id="airport-arrival-id">
+
+    <label class="table-attribute-name" for="airport-arrival-time">
+      Airplane arrival time:
+    </label>
+    <input type="datetime-local" name="airport-arrival-time" id="airport-arrival-time">
+
+    <label class="table-attribute-name" for="airport-departure-time">
+      Airplane departure time:
+    </label>
+    <input type="datetime-local" name="airport-departure-time" id="airport-departure-time">
+
+    <button type="button" class="btn btn-primary">Update</button>
+  </form>
+
+  </body>
+</html>

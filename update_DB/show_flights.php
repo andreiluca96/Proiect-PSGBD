@@ -66,7 +66,7 @@
     <input type="text" name="value">
     <label>
       Experienced crew
-      <input type="checkbox" name="experienced-crew" value="Experienced crew">
+      <input type="checkbox" name="experienced-crew">
     </label>
     
     <input class="btn btn-primary" type="submit" name="submit" value="Show">
@@ -81,7 +81,6 @@
       } else {
         select_with_filter();
       }
-
     }
     
   ?>

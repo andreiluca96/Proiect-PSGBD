@@ -6,7 +6,10 @@ function select_current_flights() {
 
 	$query = 'SELECT * FROM flights where is_current_flight(FLIGHTID)=1';
 	$statement = oci_parse($connection, $query);
-	oci_execute($statement);
+	if (!@oci_execute($statement)) {
+		echo '<h3> Eroare! </h3>';
+		return;
+	}
 
 	echo '<div class="container">';
 	echo '<table class="table">';
@@ -21,7 +24,7 @@ function select_current_flights() {
 	echo '</tr>';
 	echo '</thead>';
 	echo '<tbody>';
-	while ($row = oci_fetch_array($statement)) {
+	while ($row = @oci_fetch_array($statement)) {
 		echo '<tr>';
 		echo '<td>'; echo $row['FLIGHTID']; echo '</td>';
 		echo '<td>'; echo $row['AIRPLANEID']; echo '</td>';

@@ -2,10 +2,20 @@
 include '../DBConnect.php';
 function select_all_flights() {
 	$connection = connectToMyOracleDB();
+	if (isset($_GET['experienced-crew'])) {
+		$query = 'SELECT * FROM flights where experienced_crew(FLIGHTID) = 1';
+	} else {
+		$query = 'SELECT * FROM flights';	
+	}
 
-	$query = 'SELECT * FROM flights';
 	$statement = oci_parse($connection, $query);
-	oci_execute($statement);
+	ob_start();
+	try{
+		oci_execute($statement);
+	} catch (Exception $e) {
+		echo 'Sorry an error occured';
+	}
+	ob_end_flush();
 
 	echo '<div class="container">';
 	echo '<table class="table">';

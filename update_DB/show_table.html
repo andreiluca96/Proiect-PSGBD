@@ -7,12 +7,13 @@
     <title>Global Flight Management System</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../styles.css" rel="stylesheet">
+
   </head>
   <body>
    <nav class="navbar navbar-inverse">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand" href="../index.php">
+            <a class="navbar-brand" href="../index.html">
               <img src="https://img.clipartfest.com/d130a2ef13e2f9aeab0ebbeddb356ffc_airplane-clip-art-at-clker-com-vector-plane-clipart_600-483.png" height="30px" width="30px" alt="icon">
             </a>
             <h5>
@@ -20,62 +21,51 @@
             <h5>
           </div>
           <ul class="nav navbar-nav">
-            <li><a href="../index.php">Home</a></li>
-            <li><a href="../currentFlights.php">Current Flights</a></li>
-            <li><a href="../update_DB/insert_into_flights.php">Update Flights</a></li>
-            <li class="active"><a href="./show_airplanes.php">See Airplanes</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../currentFlights.html">Current Flights</a></li>
+            <li class="active"><a href="update_database.html">Update Flights</a></li>
           </ul>
         </div>
     </nav>
 
-  <form align="center" class="table-show-data" for="airplane-id" action="show_airplanes.php" method="get">
+  <ul class="nav nav-tabs nav-justified">
+    <li><a class="crud-selection" href="insert_into_table.html">Insert</a></li>
+    <li class="active"><a class="crud-selection" href="show_table.html">Show</a></li>
+    <li><a class="crud-selection" href="update_table.html">Update</a></li>
+    <li><a class="crud-selection" href="delete_from_table.html">Delete</a></li>
+  </ul>
+
+  <form class="table-show-data" for="airplane-id" method="get">
     <label class="table-attribute-name">
-      Field
+      Airplane ID
     </label>
-    <select name="field">
+    <select>
+      <option>
+        Flight_ID
+      </option>
       <option>
         Airplane_ID
       </option>
       <option>
-        Company_ID
+        Airplane_Departure_ID
       </option>
       <option>
-        Name
+        Airplane_Arrival_ID
       </option>
       <option>
-        Model
-      </option>
-      <option>
-        Capacity
+        Departure_Date
       </option>
 
       <option>
-        Manufacture Date
-      </option>
-
-      <option>
-        Last check date
+        Arrival_Date
       </option>
     </select>
     <label>
       Value
     </label>
-    <input type="text" name="value">
-    
+    <input type="text" name="Value">
     <input class="btn btn-primary" type="submit" name="submit" value="Show">
   </form>
-
-  <?php
-    include 'show_all_airplanes.php';
-
-    if (isset($_GET['submit'])) {
-      if (empty($_GET['value'])) {
-        select_all_airplanes();
-      } else {
-        select_with_filter_airplanes();
-      }
-    }
-  ?>
 
   </body>
 </html>

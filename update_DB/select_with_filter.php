@@ -4,41 +4,57 @@ function select_with_filter() {
 	$connection = connectToMyOracleDB();
 	if ($_GET['field'] === 'Flight_ID') {
 		$query = 'SELECT * FROM flights WHERE FLIGHTID = :r';
+		if (isset($_GET['experienced-crew'])) {
+			$query = $query . ' AND experienced_crew(FLIGHTID) = 1';
+		}
 		$statement = oci_parse($connection, $query);
 		oci_bind_by_name($statement, ':r', $_GET['value']);
 	}
 
 	if ($_GET['field'] === 'Airplane_ID') {
 		$query = 'SELECT * FROM flights WHERE AIRPLANEID = :r';
+		if (isset($_GET['experienced-crew'])) {
+			$query = $query . ' AND experienced_crew(FLIGHTID) = 1';
+		}
 		$statement = oci_parse($connection, $query);
 		oci_bind_by_name($statement, ':r', $_GET['value']);
 	}
 
 	if ($_GET['field'] === 'Airplane_Departure_ID') {
 		$query = 'SELECT * FROM flights WHERE AIRPORTDEPARTUREID = :r';
+		if (isset($_GET['experienced-crew'])) {
+			$query = $query . ' AND experienced_crew(FLIGHTID) = 1';
+		}
 		$statement = oci_parse($connection, $query);
 		oci_bind_by_name($statement, ':r', $_GET['value']);
 	}
 
 	if ($_GET['field'] === 'Airplane_Arrival_ID') {
 		$query = 'SELECT * FROM flights WHERE AIRPORTARRIVALID = :r';
+		if (isset($_GET['experienced-crew'])) {
+			$query = $query . ' AND experienced_crew(FLIGHTID) = 1';
+		}
 		$statement = oci_parse($connection, $query);
 		oci_bind_by_name($statement, ':r', $_GET['value']);
 	}
 
 	if ($_GET['field'] === 'Departure_Date') {
 		$query = 'SELECT * FROM flights WHERE DEPARTUREDATE = :r';
+		if (isset($_GET['experienced-crew'])) {
+			$query = $query . ' AND experienced_crew(FLIGHTID) = 1';
+		}
 		$statement = oci_parse($connection, $query);
 		oci_bind_by_name($statement, ':r', $_GET['value']);
 	}
 
 	if ($_GET['field'] === 'Arrival_Date') {
 		$query = 'SELECT * FROM flights WHERE ARRIVALDATE = :r';
+		if (isset($_GET['experienced-crew'])) {
+			$query = $query . ' AND experienced_crew(FLIGHTID) = 1';
+		}
 		$statement = oci_parse($connection, $query);
 		oci_bind_by_name($statement, ':r', $_GET['value']);
 	}
-
-
 
 	oci_execute($statement);
 

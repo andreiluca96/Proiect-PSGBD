@@ -68,8 +68,8 @@ function select_with_filter_airplanes() {
 		$row = oci_fetch_array($statement);
 		$count = $row['COUNT'];
 
-		if (isset($_GET['page'])) {
-			$query = 'SELECT * FROM (SELECT airplanes.*, rownum as "R" FROM AIRPLANES WHERE AIRPLANEID = :v) WHERE R <= ' . $_GET['page'] * 5 . ' AND R >= '. ($_GET['page'] - 1) * 5;
+		if (isset($_POST['page'])) {
+			$query = 'SELECT * FROM (SELECT airplanes.*, rownum as "R" FROM AIRPLANES WHERE AIRPLANEID = :v) WHERE R <= ' . $_POST['page'] * 5 . ' AND R >= '. ($_POST['page'] - 1) * 5;
 			$statement = oci_parse($connection, $query);
 			oci_bind_by_name($statement, ':v', $_GET['value']); 
 		} else {
@@ -86,8 +86,8 @@ function select_with_filter_airplanes() {
 		oci_execute($statement);
 		$row = oci_fetch_array($statement);
 		$count = $row['COUNT'];
-		if (isset($_GET['page'])) {
-			$query = 'SELECT * FROM (SELECT airplanes.*, rownum as "R" FROM AIRPLANES WHERE COMPANYID = :v) WHERE R <= ' . $_GET['page'] * 5 . ' AND R >= '. ($_GET['page'] - 1) * 5;
+		if (isset($_POST['page'])) {
+			$query = 'SELECT * FROM (SELECT airplanes.*, rownum as "R" FROM AIRPLANES WHERE COMPANYID = :v) WHERE R <= ' . $_POST['page'] * 5 . ' AND R >= '. ($_POST['page'] - 1) * 5;
 			$statement = oci_parse($connection, $query);
 			oci_bind_by_name($statement, ':v', $_GET['value']); 
 		} else {
@@ -104,8 +104,8 @@ function select_with_filter_airplanes() {
 		oci_execute($statement);
 		$row = oci_fetch_array($statement);
 		$count = $row['COUNT'];
-		if (isset($_GET['page'])) {
-			$query = 'SELECT * FROM (SELECT airplanes.*, rownum as "R" FROM AIRPLANES WHERE NAME = :v) WHERE R <= ' . $_GET['page'] * 5 . ' AND R >= '. ($_GET['page'] - 1) * 5;
+		if (isset($_POST['page'])) {
+			$query = 'SELECT * FROM (SELECT airplanes.*, rownum as "R" FROM AIRPLANES WHERE NAME = :v) WHERE R <= ' . $_POST['page'] * 5 . ' AND R >= '. ($_POST['page'] - 1) * 5;
 			$statement = oci_parse($connection, $query);
 			oci_bind_by_name($statement, ':v', $_GET['value']); 
 		} else {
@@ -122,8 +122,8 @@ function select_with_filter_airplanes() {
 		oci_execute($statement);
 		$row = oci_fetch_array($statement);
 		$count = $row['COUNT'];
-		if (isset($_GET['page'])) {
-			$query = 'SELECT * FROM (SELECT airplanes.*, rownum as "R" FROM AIRPLANES WHERE MODEL = :v) WHERE R <= ' . $_GET['page'] * 5 . ' AND R >= '. ($_GET['page'] - 1) * 5;
+		if (isset($_POST['page'])) {
+			$query = 'SELECT * FROM (SELECT airplanes.*, rownum as "R" FROM AIRPLANES WHERE MODEL = :v) WHERE R <= ' . $_POST['page'] * 5 . ' AND R >= '. ($_POST['page'] - 1) * 5;
 			$statement = oci_parse($connection, $query);
 			oci_bind_by_name($statement, ':v', $_GET['value']); 
 		} else {
@@ -141,8 +141,8 @@ function select_with_filter_airplanes() {
 		oci_execute($statement);
 		$row = oci_fetch_array($statement);
 		$count = $row['COUNT'];
-		if (isset($_GET['page'])) {
-			$query = 'SELECT * FROM (SELECT airplanes.*, rownum as "R" FROM AIRPLANES WHERE CAPACITY = :v) WHERE R <= ' . $_GET['page'] * 5 . ' AND R >= '. ($_GET['page'] - 1) * 5;
+		if (isset($_POST['page'])) {
+			$query = 'SELECT * FROM (SELECT airplanes.*, rownum as "R" FROM AIRPLANES WHERE CAPACITY = :v) WHERE R <= ' . $_POST['page'] * 5 . ' AND R >= '. ($_POST['page'] - 1) * 5;
 			$statement = oci_parse($connection, $query);
 			oci_bind_by_name($statement, ':v', $_GET['value']); 
 		} else {
@@ -159,8 +159,8 @@ function select_with_filter_airplanes() {
 		oci_execute($statement);
 		$row = oci_fetch_array($statement);
 		$count = $row['COUNT'];
-		if (isset($_GET['page'])) {
-			$query = 'SELECT * FROM (SELECT airplanes.*, rownum as "R" FROM AIRPLANES WHERE  MANUFACTUREDATE = TO_DATE(:v, \'dd-mm-yyyy\')) WHERE R <= ' . $_GET['page'] * 5 . ' AND R >= '. ($_GET['page'] - 1) * 5;
+		if (isset($_POST['page'])) {
+			$query = 'SELECT * FROM (SELECT airplanes.*, rownum as "R" FROM AIRPLANES WHERE  MANUFACTUREDATE = TO_DATE(:v, \'dd-mm-yyyy\')) WHERE R <= ' . $_POST['page'] * 5 . ' AND R >= '. ($_POST['page'] - 1) * 5;
 			$statement = oci_parse($connection, $query);
 			oci_bind_by_name($statement, ':v', $_GET['value']); 
 		} else {
@@ -177,8 +177,8 @@ function select_with_filter_airplanes() {
 		oci_execute($statement);
 		$row = oci_fetch_array($statement);
 		$count = $row['COUNT'];
-		if (isset($_GET['page'])) {
-			$query = 'SELECT * FROM (SELECT airplanes.*, rownum as "R" FROM AIRPLANES WHERE  LASTCHECKDATE = TO_DATE(:v, \'dd-mm-yyyy\')) WHERE R <= ' . $_GET['page'] * 5 . ' AND R >= '. ($_GET['page'] - 1) * 5;
+		if (isset($_POST['page'])) {
+			$query = 'SELECT * FROM (SELECT airplanes.*, rownum as "R" FROM AIRPLANES WHERE  LASTCHECKDATE = TO_DATE(:v, \'dd-mm-yyyy\')) WHERE R <= ' . $_POST['page'] * 5 . ' AND R >= '. ($_POST['page'] - 1) * 5;
 			$statement = oci_parse($connection, $query);
 			oci_bind_by_name($statement, ':v', $_GET['value']); 
 		} else {
@@ -187,9 +187,6 @@ function select_with_filter_airplanes() {
 			oci_bind_by_name($statement, ':v', $_GET['value']);
 		}
 	}
-
-
-
 	
 	oci_execute($statement);
 	echo '<div class="container">';
@@ -222,7 +219,7 @@ function select_with_filter_airplanes() {
 	echo '</div>';
 	$nr_pages = ceil($count / 10);
 	?>
-	<form class="page-form" action="show_airplanes.php" method="get">
+	<form class="page-form" action="show_airplanes.php?field=<?php echo $_GET['field'] ?>&submit=Show&value=<?php echo $_GET['value'] ?>" method="post">
 		<input type="number" name="page" value="1" min="1" max=<?php echo "\"$nr_pages\""; ?>>	
 		<input class="btn btn-primary" type="submit" name="submit" value="show page">	
 	</form>
