@@ -36,7 +36,7 @@ function select_all_airplanes() {
 	echo '<tbody>';
 	while ($row = oci_fetch_array($statement)) {
 		echo '<tr>';
-		echo '<td>'; echo $row['AIRPLANEID']; echo '</td>';
+		echo '<td>'; echo $row['ID']; echo '</td>';
 		echo '<td>'; echo $row['COMPANYID']; echo '</td>';
 		echo '<td>'; echo $row['NAME']; echo '</td>';
 		echo '<td>'; echo $row['MODEL']; echo '</td>';
@@ -64,8 +64,8 @@ function select_with_filter_airplanes() {
 		$query = 'SELECT count(*) as "COUNT" FROM airplanes WHERE AIRPLANEID = :r';
 		$statement = oci_parse($connection, $query);
 		oci_bind_by_name($statement, ':r', $_GET['value']);
-		oci_execute($statement);
-		$row = oci_fetch_array($statement);
+		@oci_execute($statement);
+		$row = @oci_fetch_array($statement);
 		$count = $row['COUNT'];
 
 		if (isset($_POST['page'])) {
@@ -188,7 +188,10 @@ function select_with_filter_airplanes() {
 		}
 	}
 	
-	oci_execute($statement);
+	if (!@oci_execute($statement)) {
+		echo "<h3> An error occured! Probably you gave the wrong type for the values. </h3>";
+	}
+
 	echo '<div class="container">';
 	echo '<table class=" table">';
 	echo '<thead>';
@@ -203,9 +206,9 @@ function select_with_filter_airplanes() {
 	echo '</tr>';
 	echo '</thead>';
 	echo '<tbody>';
-	while ($row = oci_fetch_array($statement)) {
+	while ($row = @oci_fetch_array($statement)) {
 		echo '<tr>';
-		echo '<td>'; echo $row['AIRPLANEID']; echo '</td>';
+		echo '<td>'; echo $row['ID']; echo '</td>';
 		echo '<td>'; echo $row['COMPANYID']; echo '</td>';
 		echo '<td>'; echo $row['NAME']; echo '</td>';
 		echo '<td>'; echo $row['MODEL']; echo '</td>';

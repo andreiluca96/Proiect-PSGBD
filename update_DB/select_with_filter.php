@@ -3,7 +3,7 @@
 function select_with_filter() {
 	$connection = connectToMyOracleDB();
 	if ($_GET['field'] === 'Flight_ID') {
-		$query = 'SELECT * FROM flights WHERE FLIGHTID = :r';
+		$query = 'SELECT * FROM flights WHERE id = :r';
 		if (isset($_GET['experienced-crew'])) {
 			$query = $query . ' AND experienced_crew(FLIGHTID) = 1';
 		}
@@ -56,7 +56,9 @@ function select_with_filter() {
 		oci_bind_by_name($statement, ':r', $_GET['value']);
 	}
 
-	oci_execute($statement);
+	if (!@oci_execute($statement)) {
+		echo "<h3> An error occured! Probably you gave the wrong type for the values. </h3>";
+	}
 
 	echo '<div class="container">';
 	echo '<table class="table">';
@@ -71,9 +73,9 @@ function select_with_filter() {
 	echo '</tr>';
 	echo '</thead>';
 	echo '<tbody>';
-	while ($row = oci_fetch_array($statement)) {
+	while ($row = @oci_fetch_array($statement)) {
 		echo '<tr>';
-		echo '<td>'; echo $row['FLIGHTID']; echo '</td>';
+		echo '<td>'; echo $row['ID']; echo '</td>';
 		echo '<td>'; echo $row['AIRPLANEID']; echo '</td>';
 		echo '<td>'; echo $row['AIRPORTDEPARTUREID']; echo '</td>';
 		echo '<td>'; echo $row['AIRPORTARRIVALID']; echo '</td>';

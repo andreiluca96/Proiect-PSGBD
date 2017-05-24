@@ -7,7 +7,7 @@
     <title>
       Global Flight Management System
     </title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
 
   </head>
@@ -27,6 +27,7 @@
             <li><a href="currentFlights.php">Current Flights</a></li>
             <li><a href="./update_DB/insert_into_flights.php">Update Flights</a></li>
             <li><a href="./show_airplanes/show_airplanes.php">See Airplanes</a></li>
+            <li><a href="./update_DB/update_view.php">Update View</a></li>
           </ul>
         </div>
       </nav>

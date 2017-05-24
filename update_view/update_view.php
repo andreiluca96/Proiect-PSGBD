@@ -30,54 +30,69 @@
     </nav>
 
   <ul class="nav nav-tabs nav-justified">
-    <li><a class="crud-selection" href="insert_into_flights.php">Insert</a></li>
-    <li><a class="crud-selection" href="show_flights.php">Show</a></li>
-    <li class="active"><a class="crud-selection" href="update_flights.php">Update</a></li>
-    <li><a class="crud-selection" href="delete_from_flights.php">Delete</a></li>
+    <li><a class="crud-selection" href="insert_view.php">Insert</a></li>
+    <li><a class="crud-selection" href="show_view.php">Show</a></li>
+    <li class="active"><a class="crud-selection" href="update_view.php">Update</a></li>
+    <li><a class="crud-selection" href="delete_from_view.php">Delete</a></li>
   </ul>
 
   <form class="table-insert-data" for="airplane-id">
 
     <label class="table-attribute-name">
-      Flight ID
+      ID
     </label>
-    <input type="number" name="flight-id" id="flight-id">
+    <input type="number" name="id" id="id">
 
     <label class="table-attribute-name">
-      Airplane ID
+      Firstname
     </label>
-    <input type="number" name="airplane-id" id="airplane-id">
+    <input type="text" name="firstname" id="firstname">
 
     <label class="table-attribute-name" for="airport-departure-id">
-      Airport departure ID:
+      Lastname
     </label>
-    <input type="number" name="airport-departure-id" id="airport-departure-id">
+    <input type="text" name="lastname" id="lastname">
 
     <label class="table-attribute-name" for="airport-departure-id">
-      Airplane arrival ID:
+      Address
     </label>
-    <input type="number" name="airport-arrival-id" id="airport-arrival-id">
+    <input type="text" name="address" id="address">
 
     <label class="table-attribute-name" for="airport-arrival-time">
-      Airplane arrival time:
+      Date of birth
     </label>
-    <input type="date" name="airport-arrival-time" id="airport-arrival-time">
-
-    <label class="table-attribute-name" for="airport-departure-time">
-      Airplane departure time:
-    </label>
-    <input type="date" name="airport-departure-time" id="airport-departure-time">
+    <input type="date" name="date-of-birth" id="date-of-birth">
 
     <input class="btn btn-primary" type="submit" name="submit" value="Update">
   </form>
   <?php
     include '../DBConnect.php';
-    include 'update_flight.php';
+
+    function update_view() {
+      $connection = connectToMyOracleDB();
+
+      $query = 'UPDATE iasi_customers SET
+      id=:id,
+      firstname=:firstname,
+      lastname=:lastname,
+      adress=:address,
+      dateofbirth=TO_DATE(:dateofbirth, \'YYYY-MM-DD\')
+      WHERE ID=:id';
+      
+      $statement = oci_parse($connection, $query);
+      oci_bind_by_name($statement, ':id', $_GET['id']);
+      oci_bind_by_name($statement, ':firstname', $_GET['firstname']);
+      oci_bind_by_name($statement, ':lastname', $_GET['lastname']);
+      oci_bind_by_name($statement, ':address', $_GET['address']);
+      oci_bind_by_name($statement, ':dateofbirth', $_GET['date-of-birth']);
+      // var_dump($query);
+      oci_execute($statement);
+    }
+    
     if (isset($_GET['submit'])) {
-      if (isset($_GET['airplane-id']) && !empty($_GET['airplane-id']) && isset($_GET['airport-departure-id']) && !empty($_GET['airport-departure-id']) &&
-        isset($_GET['airport-arrival-id']) && !empty($_GET['airport-arrival-id']) && isset($_GET['airport-arrival-time']) && !empty($_GET['airport-arrival-time']) && isset($_GET['airport-departure-time']) && !empty($_GET['airport-departure-time']) &&
-        isset($_GET['flight-id']) && !empty($_GET['flight-id'])) {
-        update_flight();
+      if (isset($_GET['id']) && !empty($_GET['id']) && isset($_GET['firstname']) && !empty($_GET['firstname']) &&
+        isset($_GET['lastname']) && !empty($_GET['lastname']) && isset($_GET['address']) && !empty($_GET['address']) && isset($_GET['date-of-birth']) && !empty($_GET['date-of-birth'])) {
+        update_view();
       } else {
         echo '<h2> You have to complete all the fields! </h2>';
       }

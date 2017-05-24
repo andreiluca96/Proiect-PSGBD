@@ -4,9 +4,12 @@ include 'DBConnect.php';
 function select_upcoming_flights() {
 	$connection = connectToMyOracleDB();
 
-	$query = 'SELECT * FROM flights where is_upcoming_flight(FLIGHTID)=1';
+	$query = 'SELECT * FROM flights where is_upcoming_flight(id)=1';
 	$statement = oci_parse($connection, $query);
-	oci_execute($statement);
+
+	if (!oci_execute($statement)) {
+		echo "<h3> An error occured! Probably you gave the wrong type for the values. </h3>";
+	}
 
 	echo '<div class="container">';
 	echo '<table class="table">';
@@ -23,7 +26,7 @@ function select_upcoming_flights() {
 	echo '<tbody>';
 	while ($row = oci_fetch_array($statement)) {
 		echo '<tr>';
-		echo '<td>'; echo $row['FLIGHTID']; echo '</td>';
+		echo '<td>'; echo $row['ID']; echo '</td>';
 		echo '<td>'; echo $row['AIRPLANEID']; echo '</td>';
 		echo '<td>'; echo $row['AIRPORTDEPARTUREID']; echo '</td>';
 		echo '<td>'; echo $row['AIRPORTARRIVALID']; echo '</td>';
@@ -40,7 +43,10 @@ function select_upcoming_flights_with_filter() {
 	$connection = connectToMyOracleDB();
 	$query = 'SELECT * FROM flights where is_upcoming_flight(FLIGHTID)=1 ' . 'AND DEPARTUREDATE < TO_DATE( \'' . $_GET['endDate'] .'\', \'YYYY-MM-DD\') AND AIRPORTDEPARTUREID =' . $_GET['departure-airport'] . 'AND AIRPORTARRIVALID = ' . $_GET['arrival-airport'];
 	$statement = oci_parse($connection, $query);
-	oci_execute($statement);
+
+	if (!@oci_execute($statement)) {
+		echo "<h3> An error occured! Probably you gave the wrong type for the values. </h3>";
+	}
 
 	echo '<div class="container">';
 	echo '<table class="table">';
@@ -55,9 +61,9 @@ function select_upcoming_flights_with_filter() {
 	echo '</tr>';
 	echo '</thead>';
 	echo '<tbody>';
-	while ($row = oci_fetch_array($statement)) {
+	while ($row = @oci_fetch_array($statement)) {
 		echo '<tr>';
-		echo '<td>'; echo $row['FLIGHTID']; echo '</td>';
+		echo '<td>'; echo $row['ID']; echo '</td>';
 		echo '<td>'; echo $row['AIRPLANEID']; echo '</td>';
 		echo '<td>'; echo $row['AIRPORTDEPARTUREID']; echo '</td>';
 		echo '<td>'; echo $row['AIRPORTARRIVALID']; echo '</td>';

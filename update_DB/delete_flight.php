@@ -3,7 +3,7 @@
 function delete_flight() {
 	$connection = connectToMyOracleDB();
 	if ($_GET['field'] === 'Flight_ID') {
-		$query = 'DELETE FROM flights WHERE FLIGHTID = :r';
+		$query = 'DELETE FROM flights WHERE id = :r';
 		$statement = oci_parse($connection, $query);
 		oci_bind_by_name($statement, ':r', $_GET['Value']);
 	}
@@ -38,5 +38,7 @@ function delete_flight() {
 		oci_bind_by_name($statement, ':r', $_GET['Value']);
 	}
 
-	oci_execute($statement);
+	if (!@oci_execute($statement)) {
+		echo "<h3> An error occured! Probably you gave the wrong type for the values. </h3>";
+	}
 }

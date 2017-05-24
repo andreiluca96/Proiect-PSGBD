@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Global Flight Management System</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
 
   </head>
@@ -25,6 +25,7 @@
             <li class="active"><a href="currentFlights.php">Current Flights</a></li>
             <li><a href="./update_DB/insert_into_flights.php">Update Flights</a></li>
             <li><a href="./show_airplanes/show_airplanes.php">See Airplanes</a></li>
+            <li><a href="../update_view/show_view.php">Update View</a></li>
           </ul>
         </div>
       </nav>

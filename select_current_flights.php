@@ -4,9 +4,9 @@ include 'DBConnect.php';
 function select_current_flights() {
 	$connection = connectToMyOracleDB();
 
-	$query = 'SELECT * FROM flights where is_current_flight(FLIGHTID)=1';
+	$query = 'SELECT * FROM flights where is_current_flight(id)=1';
 	$statement = oci_parse($connection, $query);
-	if (!@oci_execute($statement)) {
+	if (!oci_execute($statement)) {
 		echo '<h3> Eroare! </h3>';
 		return;
 	}
@@ -26,7 +26,7 @@ function select_current_flights() {
 	echo '<tbody>';
 	while ($row = @oci_fetch_array($statement)) {
 		echo '<tr>';
-		echo '<td>'; echo $row['FLIGHTID']; echo '</td>';
+		echo '<td>'; echo $row['ID']; echo '</td>';
 		echo '<td>'; echo $row['AIRPLANEID']; echo '</td>';
 		echo '<td>'; echo $row['AIRPORTDEPARTUREID']; echo '</td>';
 		echo '<td>'; echo $row['AIRPORTARRIVALID']; echo '</td>';

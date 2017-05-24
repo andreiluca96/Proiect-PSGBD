@@ -3,7 +3,7 @@ include '../DBConnect.php';
 function select_all_flights() {
 	$connection = connectToMyOracleDB();
 	if (isset($_GET['experienced-crew'])) {
-		$query = 'SELECT * FROM flights where experienced_crew(FLIGHTID) = 1';
+		$query = 'SELECT * FROM flights where experienced_crew(id) = 1';
 	} else {
 		$query = 'SELECT * FROM flights';	
 	}
@@ -32,7 +32,7 @@ function select_all_flights() {
 	echo '<tbody>';
 	while ($row = oci_fetch_array($statement)) {
 		echo '<tr>';
-		echo '<td>'; echo $row['FLIGHTID']; echo '</td>';
+		echo '<td>'; echo $row['ID']; echo '</td>';
 		echo '<td>'; echo $row['AIRPLANEID']; echo '</td>';
 		echo '<td>'; echo $row['AIRPORTDEPARTUREID']; echo '</td>';
 		echo '<td>'; echo $row['AIRPORTARRIVALID']; echo '</td>';
